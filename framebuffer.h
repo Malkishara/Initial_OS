@@ -53,3 +53,4 @@ void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg);
 int fb_write(char *buf, unsigned int len);
 
 #endif /* INCLUDE_IO_H */
+
