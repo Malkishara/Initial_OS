@@ -4,11 +4,11 @@
 
 #include "serial.h"
 #include "keyboard.h"
-//#include "paging.h"
+#include "paging.h"
 
 #define INTERRUPTS_DESCRIPTOR_COUNT 256 
 #define INTERRUPTS_KEYBOARD 33 
-//#define INTERRUPTS_PAGING 14 
+#define INTERRUPTS_PAGING 14 
 
 struct IDTDescriptor idt_descriptors[INTERRUPTS_DESCRIPTOR_COUNT];
 struct IDT idt;
