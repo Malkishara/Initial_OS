@@ -1,5 +1,6 @@
 ENTRY(loader)                /* the name of the entry label */
 
+
 SECTIONS {
     . = 0x00100000;          /* the code should be loaded at 1 MB */
 
@@ -23,4 +24,7 @@ SECTIONS {
         *(COMMON)            /* all COMMON sections from all files */
         *(.bss)              /* all bss sections from all files */
     }
+
 }
+
+kernel_end = .;
