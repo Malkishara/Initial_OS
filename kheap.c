@@ -19,3 +19,5 @@ u32int kmalloc_page() {
 	return kmalloc(0x1000);
 }
 
+
+
