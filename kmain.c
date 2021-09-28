@@ -6,23 +6,29 @@
 #include "interrupts.h"
 #include "multiboot.h"
 #include "paging.h"
+#include "hardware_interrupt_enabler.h"
 
 
 
 
-    
-void kmain(multiboot_info_t *mbinfo){
+void init(u32int kernelPhysicalEnd) {
+
+  init_gdt();
+
+  serial_configure(SERIAL_COM1_BASE, Baud_115200);
+  init_paging(kernelPhysicalEnd);
+  interrupts_install_idt();
+
+}
 
 
-    module_t* modules = (module_t*) mbinfo->mods_addr;       
-    unsigned int address_of_module = modules->mod_start; 
+int kmain(u32int kernelPhysicalEnd){
 
-    typedef void (*call_module_t)(void);
-    call_module_t start_program = (call_module_t) address_of_module;
-    start_program();
-   
-    segments_install_gdt();
-    interrupts_install_idt();
-    init_paging();
-    
+
+  	init(kernelPhysicalEnd);
+  	disable_hardware_interrupts();
+  	switch_to_user_mode();
+
+
+  	return 0;
 }
